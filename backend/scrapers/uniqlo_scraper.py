@@ -1,7 +1,5 @@
 from time import sleep
 import requests
-import json
-import pandas as pd
 from backend.utils import log_config
 
 # Set up logging
