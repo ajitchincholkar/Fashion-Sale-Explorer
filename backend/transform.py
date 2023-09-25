@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 from backend.utils import log_config
 
 # Set up logging
@@ -74,3 +75,31 @@ def uniqlo_transform(data):
 
     logger.info("Successfully executed uniqlo_transform() function!!")
     return uniqlo_onsale_df
+
+
+def hm_transform(data):
+    logger.info("Inside hm_transform() function...")
+    all_products = []
+
+    for product in data['products']:
+        name = product['title']
+        price = product['redPrice']
+        og_price = product['price']
+        product_link = f"https://www2.hm.com{product['link']}"
+
+        for image in product['image']:
+            img_url = image['src']
+
+        hm_data = (name, price, og_price, product_link, img_url)
+        all_products.append(hm_data)
+
+    logger.info("Creating the hm_onsale_df...")
+    hm_onsale_df = pd.DataFrame(all_products, columns=['product_name', 'price', 'og_price', 'product_link', 'img_url'])
+
+    hm_onsale_df['price'] = hm_onsale_df['price'].str.replace("Rs.", "").str.replace(",", "").astype('float64')
+    hm_onsale_df['og_price'] = hm_onsale_df['og_price'].str.replace("Rs.", "").str.replace(",", "").astype('float64')
+    hm_onsale_df['img_url'] = "https:" + hm_onsale_df['img_url']
+    hm_onsale_df['img_url'] = hm_onsale_df['img_url'].apply(lambda x: re.sub(r'"', '', x))
+
+    logger.info("Successfully executed hm_transform() function!!")
+    return hm_onsale_df

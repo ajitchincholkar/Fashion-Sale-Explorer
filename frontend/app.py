@@ -10,6 +10,8 @@ def load_data(brand):
         csv_name = 'zara_onsale.csv'
     elif brand == "Uniqlo":
         csv_name = 'uniqlo_onsale.csv'
+    elif brand == "H&M":
+        csv_name = "hm_onsale.csv"
     else:
         return None
 
@@ -22,7 +24,7 @@ def load_data(brand):
 st.title("Products On Sale")
 
 # Add a selectbox for choosing the brand (Zara or Uniqlo)
-selected_brand = st.selectbox("Select Brand", ["Select", "Zara", "Uniqlo"])
+selected_brand = st.selectbox("Select Brand", ["Select", "Zara", "Uniqlo", "H&M"])
 
 # Load the product data based on the selected brand
 df = load_data(selected_brand)
