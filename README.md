@@ -5,6 +5,7 @@
 - [About](#about)
 - [Key Features](#key-features)
 - [Project Overview](#project-overview)
+- [Project Structure](#project-structure)
 - [Technologies Used](#technologies-used)
 - [How To Use](#how-to-use)
 
@@ -28,6 +29,34 @@ The project follows a structured workflow:
 2. **Data Transformation**: Data is then transformed by selecting only the required data fields and changing the data types. The transformed data is saved in CSV format in the `data/processed` folder.
 
 3. **Frontend**: `Streamlit` library is used for the frontend. The frontend displays the products in user-friendly manner.
+
+## Project Structure
+``` 
+- sale_explorer/ 
+	- backend/
+		- data/
+			- raw/
+			- processed/
+		- scrapers/
+			- hm_scraper.py
+			- zara_scraper.py
+			- uniqlo_scraper.py
+		- utils/
+			- log_config.py
+		- webdriver/
+			- msedgedriver.exe
+		- __init__.py
+		- database.py
+		- transform.py
+	- frontend/
+		- app.py
+		- __init__.py
+	- .gitignore
+	- backend.log
+	- main.py
+	- requirements.txt
+	- README.md 
+```
 
 ## Technologies Used
 
